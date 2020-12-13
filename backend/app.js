@@ -11,6 +11,7 @@ const passport = require("passport");
 
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 5000;
