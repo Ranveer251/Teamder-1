@@ -20,13 +20,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, "../teamder/build")));
 
-app.use(
-  cors({
-    origin: "https://teamder-app.herokuapp.com", // allow to server to accept request from different origin
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true // allow session cookie from browser to pass through
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://teamder-app.herokuapp.com", // allow to server to accept request from different origin
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true // allow session cookie from browser to pass through
+//   })
+// );
 // Set up sessions
 app.use(session({
     secret: "The Tinder for Techies.",
@@ -98,24 +98,24 @@ const { Schema } = require("mongoose");
 
 /*App Config*/
 
-app.use("/",indexRoute);
-app.use("/login",loginRoute);
-app.use("/register",registerRoute);
-app.use("/auth/google", googleAuth);
-app.use("/auth/github", githubAuth);
-app.use("/profile/edit", editProfile);
-app.use("/getalldata", getAllData);
-app.use("/getuserdata",getUserData);
-app.use("/loggedin", isLoggedIn);
-app.use("/similarusers", similarUsers);
-app.use("/hackathons", hackathons);
-app.use("/myhackathons", myHackathons);
-app.use("/addmyhackathon", addHackathon);
-app.use("/newchat",createNewChat);
-app.use("/updatechat", updateChat);
-app.use("/getchats", getChats);
-app.use("/getcurrentchat", getCurrentChat);
-app.use("/getprofilepictures", getProfilePictures);
+app.use("/api",indexRoute);
+app.use("/api/login",loginRoute);
+app.use("/api/register",registerRoute);
+app.use("/api/auth/google", googleAuth);
+app.use("/api/auth/github", githubAuth);
+app.use("/api/profile/edit", editProfile);
+app.use("/api/getalldata", getAllData);
+app.use("/api/getuserdata",getUserData);
+app.use("/api/loggedin", isLoggedIn);
+app.use("/api/similarusers", similarUsers);
+app.use("/api/hackathons", hackathons);
+app.use("/api/myhackathons", myHackathons);
+app.use("/api/addmyhackathon", addHackathon);
+app.use("/api/newchat",createNewChat);
+app.use("/api/updatechat", updateChat);
+app.use("/api/getchats", getChats);
+app.use("/api/getcurrentchat", getCurrentChat);
+app.use("/api/getprofilepictures", getProfilePictures);
 
 /*------App Config End--------*/
 
