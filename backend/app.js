@@ -17,6 +17,8 @@ const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(express.static(path.join(__dirname, "../teamder/build")));
+
 app.use(
   cors({
     origin: "https://teamder-app.herokuapp.com", // allow to server to accept request from different origin
@@ -116,7 +118,9 @@ app.use("/getprofilepictures", getProfilePictures);
 
 /*------App Config End--------*/
 
-
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "../teamder/build/index.html"));
+  });
 
 app.listen(port, function(){
     console.log("Server started locally at port 5000");
