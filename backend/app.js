@@ -10,6 +10,7 @@ const session = require('express-session');
 const passport = require("passport");
 
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    origin: "https://teamder-app.herokuapp.com", // allow to server to accept request from different origin
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true // allow session cookie from browser to pass through
   })
@@ -41,14 +42,14 @@ app.use(session({
 
 
 // mongoDB Connection
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
+const MONGODB_URI = `mongodb+srv://team-epic:${process.env.MONGO_PASSWORD}@cluster0.l7m6u.mongodb.net/Teamder?retryWrites=true&w=majority`;
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set("useCreateIndex", true);
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 });
 // mongoDB connection finished
-
 const updateHackathon = require('./routes/Hackathon/updateHackathon');
 updateHackathon();
 setInterval(updateHackathon, 43200000); // every 12 hours
