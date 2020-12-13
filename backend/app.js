@@ -18,7 +18,7 @@ const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.static(path.join(__dirname, "../teamder/build")));
+app.use(express.static(path.join(__dirname, "/../teamder/build")));
 
 // app.use(
 //   cors({
